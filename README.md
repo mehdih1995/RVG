@@ -89,7 +89,6 @@ https://github.com/[your-username]/rvg
 
 اگر این پروژه به شما کمک کرد و خواستید از توسعه‌دهنده حمایت کنید:
 
-| روش | آدرس / لینک |
 https://wallets.arvin341az.workers.dev
 
 🙏 از حمایت شما متشکریم!
