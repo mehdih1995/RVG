@@ -32,7 +32,8 @@ router = APIRouter()
 
 XHTTP_BUF = 512 * 1024
 DOWNLINK_QUEUE_MAX = 512
-SESSION_IDLE_TIMEOUT = 30
+SESSION_IDLE_TIMEOUT = 30          # سشن‌هایی که هنوز TCP باز نکردن (هندشیک ناقص مونده)
+SESSION_IDLE_TIMEOUT_ACTIVE = 90   # سشن‌هایی که TCP باز کردن ولی دیگه هیچ ترافیکی (نه رید نه رایت) ردوبدل نشده
 REAPER_INTERVAL = 10
 TCP_CONNECT_TIMEOUT = 10.0
 
@@ -261,8 +262,19 @@ async def _reaper():
         await asyncio.sleep(REAPER_INTERVAL)
         now = time.time()
         async with XHTTP_LOCK:
-            stale = [sid for sid, s in xhttp_sessions.items()
-                     if now - s["last_seen"] > SESSION_IDLE_TIMEOUT and not s.get("tcp_open")]
+            stale = []
+            for sid, s in xhttp_sessions.items():
+                idle = now - s["last_seen"]
+                if s.get("tcp_open"):
+                    # سشنی که TCP باز کرده ولی مدت زیادیه (SESSION_IDLE_TIMEOUT_ACTIVE)
+                    # هیچ رید/رایتی روش last_seen رو آپدیت نکرده یعنی عملاً مرده
+                    # (کلاینت قطع شده بدون FIN تمیز، یا سمت remote گیر کرده) —
+                    # قبلاً این‌ها اصلاً چک نمی‌شدن و برای همیشه توی connections می‌موندن.
+                    if idle > SESSION_IDLE_TIMEOUT_ACTIVE:
+                        stale.append(sid)
+                else:
+                    if idle > SESSION_IDLE_TIMEOUT:
+                        stale.append(sid)
         for sid in stale:
             await _teardown(sid)
 
@@ -377,16 +389,22 @@ async def packet_up_upload(uuid: str, session_id: str, seq: int, request: Reques
             nxt = 1
             while nxt in sess["seq_buf"]:
                 pending = sess["seq_buf"].pop(nxt)
+                if sess["writer"].is_closing():
+                    raise ConnectionError("transport closing")
                 sess["writer"].write(pending)
                 nxt += 1
             sess["next_seq"] = nxt
             return {"ok": True, "connected": True}
 
         if seq == sess["next_seq"]:
+            if sess["writer"].is_closing():
+                raise ConnectionError("transport closing")
             sess["writer"].write(body)
             sess["next_seq"] += 1
             while sess["next_seq"] in sess["seq_buf"]:
                 pending = sess["seq_buf"].pop(sess["next_seq"])
+                if sess["writer"].is_closing():
+                    raise ConnectionError("transport closing")
                 sess["writer"].write(pending)
                 sess["next_seq"] += 1
         else:
@@ -443,6 +461,8 @@ async def stream_up_upload(uuid: str, session_id: str, request: Request):
                 writer = sess["writer"]
                 continue
 
+            if writer.is_closing():
+                raise ConnectionError("transport closing")
             writer.write(chunk)
             if flow.should_drain(writer.transport.get_write_buffer_size()):
                 await flow.drain(writer)
