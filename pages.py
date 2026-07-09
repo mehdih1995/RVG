@@ -582,6 +582,25 @@ a{color:inherit;text-decoration:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{border-color:rgba(16,185,129,.3);background:var(--green-bg);color:var(--green-t)}
 .toast.err{border-color:rgba(239,68,68,.3);background:var(--red-bg);color:var(--red-t)}
+/* ══════ نوار اعلان‌های همگانی ══════ */
+.ann-banner-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.ann-card{position:relative;display:flex;gap:13px;background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:15px 44px 15px 17px;box-shadow:var(--shadow);animation:fi .25s ease;overflow:hidden}
+.ann-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%}
+.ann-card.news::before{background:var(--accent)}
+.ann-card.ad::before{background:var(--purple)}
+.ann-card.warning::before{background:var(--amber)}
+.ann-card.urgent::before{background:var(--red)}
+.ann-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ann-card.news .ann-icon{background:var(--accent-d);color:var(--accent2)}
+.ann-card.ad .ann-icon{background:var(--purple-bg);color:var(--purple)}
+.ann-card.warning .ann-icon{background:var(--amber-bg);color:var(--amber-t)}
+.ann-card.urgent .ann-icon{background:var(--red-bg);color:var(--red-t)}
+.ann-body{flex:1;min-width:0}
+.ann-title{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.ann-text{font-size:12px;color:var(--t2);line-height:1.8}
+.ann-img{max-width:100%;border-radius:10px;margin-top:10px;border:1px solid var(--card-b);display:block}
+.ann-close{position:absolute;top:10px;left:10px;width:24px;height:24px;border-radius:7px;background:var(--accent-d);border:none;color:var(--t3);font-size:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s}
+.ann-close:hover{background:var(--red-bg);color:var(--red-t)}
 .dash-footer{border-top:1px solid var(--card-b);margin-top:14px;padding-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .df-text{font-size:10px;color:var(--t3)}
 .df-link{font-size:11.5px;color:var(--accent2);display:flex;align-items:center;gap:5px;font-weight:600}
@@ -759,6 +778,54 @@ a{color:inherit;text-decoration:none}
 .upd-item-err-box{margin-top:8px;background:var(--red-bg);border:1px solid rgba(239,68,68,.2);border-radius:9px;padding:8px 11px;font-size:10.5px;color:var(--red-t);font-family:ui-monospace,monospace;word-break:break-all}
 .upd-history-empty{text-align:center;padding:50px 20px;color:var(--t3);background:var(--card);border:1px dashed var(--card-b);border-radius:18px}
 .upd-history-empty i{font-size:36px;opacity:.35;margin-bottom:10px;display:block}
+
+/* ══════ پشتیبانی کاربر — ری‌دیزاین ══════ */
+.sup-wrap{max-width:1450px;background:var(--card);border:1px solid var(--card-b);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.sup-wrap::before{content:'';position:absolute;top:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,var(--accent-d),transparent 70%);pointer-events:none;z-index:0}
+.sup-head{display:flex;align-items:center;gap:13px;padding:18px 22px;border-bottom:1px solid var(--card-b);background:linear-gradient(155deg,var(--accent-d) 0%,transparent 75%);position:relative;z-index:1}
+.sup-head-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;flex-shrink:0;box-shadow:0 6px 16px rgba(59,130,246,.35);position:relative}
+.sup-head-icon::after{content:'';position:absolute;inset:-5px;border-radius:16px;border:1.5px solid var(--accent);opacity:.4;animation:supBreathe 2.4s ease-in-out infinite}
+@keyframes supBreathe{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.1);opacity:0}}
+.sup-head-text{flex:1;min-width:0}
+.sup-head-title{font-size:14.5px;font-weight:800;color:var(--t1);letter-spacing:-.01em}
+.sup-head-sub{font-size:10.5px;color:var(--t3);margin-top:3px;display:flex;align-items:center;gap:6px}
+.sup-head-sub .sdot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite;flex-shrink:0}
+.sup-close-btn{background:var(--red-bg);color:var(--red-t);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:8px 14px;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s}
+.sup-close-btn:hover{background:rgba(239,68,68,.2);transform:translateY(-1px)}
+.sup-blocked-banner{background:var(--red-bg);color:var(--red-t);font-size:11.5px;font-weight:700;padding:11px 22px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--card-b);position:relative;z-index:1}
+ 
+#support-msgs{height:370px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding:20px;background:var(--bg2);position:relative;z-index:1;scroll-behavior:smooth}
+#support-msgs::-webkit-scrollbar{width:5px}
+#support-msgs::-webkit-scrollbar-thumb{background:var(--card-b);border-radius:3px}
+ 
+.sup-date-sep{text-align:center;font-size:9.5px;color:var(--t3);font-weight:700;margin:14px 0 10px;position:relative}
+.sup-date-sep span{background:var(--bg2);padding:0 12px;position:relative;z-index:1}
+.sup-date-sep::before{content:'';position:absolute;top:50%;right:0;left:0;height:1px;background:var(--card-b);z-index:0}
+ 
+.sup-msg-row{display:flex;align-items:flex-end;gap:8px;margin-bottom:10px;max-width:100%}
+.sup-msg-row.client{margin-right:0;margin-left:auto;flex-direction:row-reverse}
+.sup-msg-row.admin{margin-left:0; display: flex; justify-content: left}
+.sup-avatar{width:26px;height:26px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-bottom:2px}
+.sup-avatar.admin{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.sup-avatar.client{background:var(--purple-bg);color:var(--purple)}
+.sup-msg{padding:10px 15px;border-radius:16px;font-size:12.8px;line-height:1.75;word-break:break-word;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.sup-msg.client{background:var(--accent);color:#fff;border-bottom-right-radius:5px}
+.sup-msg.admin{background:var(--card);color:var(--t1);border:1px solid var(--card-b);border-bottom-left-radius:5px}
+.sup-msg .sup-time{display:flex;align-items:center;gap:4px;font-size:9px;opacity:.68;margin-top:5px;justify-content:flex-end}
+.sup-msg .sup-time i{font-size:12px}
+.sup-msg.client .sup-time i.seen{color:#fff}
+ 
+.sup-empty{color:var(--t3);font-size:12px;text-align:center;padding:60px 20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.sup-empty i{font-size:38px;opacity:.35}
+.sup-empty b{color:var(--t2);font-size:13px;font-weight:700}
+ 
+.sup-input-row{display:flex;gap:10px;padding:16px 18px;background:var(--card);border-top:1px solid var(--card-b);position:relative;z-index:1}
+.sup-input-row input{margin-bottom:0;border-radius:13px;padding:12px 16px}
+.sup-input-row button{border-radius:13px;padding:0 18px;display:flex;align-items:center;justify-content:center}
+.sup-input-row.disabled{opacity:.55;pointer-events:none}
+ 
+.sup-new-badge{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;margin-right:6px;animation:pulse 1.6s infinite}
+
 </style>
 </head>
 <body>
@@ -896,6 +963,7 @@ a{color:inherit;text-decoration:none}
     <div class="nav-sec">سیستم</div>
     <div class="nav-it" data-pg="updates"><i class="ti ti-cloud-download"></i> نسخه و بروزرسانی <span class="nav-badge" id="update-nb" style="display:none">1</span></div>
     <div class="nav-it" data-pg="security"><i class="ti ti-shield-lock"></i> امنیت</div>
+    <div class="nav-it" data-pg="support"><i class="ti ti-headset"></i> پشتیبانی <span class="nav-badge" id="support-nb" style="display:none">●</span></div>
     <div class="nav-it" data-pg="logs"><i class="ti ti-history"></i> لاگ فعالیت‌ها</div>
     <div class="nav-it" data-pg="errors"><i class="ti ti-alert-triangle"></i> خطاها</div>
     <div class="nav-it" data-pg="testws"><i class="ti ti-wifi"></i> تست WebSocket</div>
@@ -908,6 +976,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </aside>
 <main class="main">
+<div class="ann-banner-wrap" id="ann-banner-wrap"></div>
 <section class="pg on" id="pg-overview">
   <div class="topbar">
     <div><div class="tb-title"><i class="ti ti-layout-dashboard"></i> داشبورد</div><div class="tb-sub" id="last-upd">در حال بارگذاری...</div></div>
@@ -965,7 +1034,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 <section class="pg" id="pg-links">
-  <div class="topbar">
+  <div class="">
     <div><div class="tb-title"><i class="ti ti-link-plus"></i> کانفیگ‌ها</div><div class="tb-sub">ساخت و مدیریت کانفیگ با سهمیه، انقضا و گروه‌بندی</div></div>
     <div class="tb-right"><span class="badge bg-blue" id="links-pg-cnt">۰ کانفیگ</span></div>
   </div>
@@ -1288,6 +1357,25 @@ a{color:inherit;text-decoration:none}
     <div class="upd-history-empty"><i class="ti ti-history-toggle"></i><p>هنوز هیچ بروزرسانی‌ای ثبت نشده</p></div>
   </div>
 </section>
+<section class="pg" id="pg-support">
+  <div class="sup-wrap">
+    <div class="sup-head">
+      <div class="sup-head-icon"><i class="ti ti-headset"></i></div>
+      <div class="sup-head-text">
+        <div class="sup-head-title">پشتیبانی RVG</div>
+        <div class="sup-head-sub"><span class="sdot"></span> معمولاً در کمتر از چند ساعت پاسخ داده می‌شود</div>
+      </div>
+    </div>
+    <div id="sup-blocked-banner" class="sup-blocked-banner" style="display:none">
+      <i class="ti ti-lock"></i> دسترسی شما به ارسال پیام توسط پشتیبانی محدود شده است.
+    </div>
+    <div id="support-msgs"></div>
+    <div class="sup-input-row" id="sup-input-row">
+      <input class="fi" id="support-inp" placeholder="پیام خود را بنویسید..." style="flex:1" onkeydown="if(event.key==='Enter')sendSupportMsg()">
+      <button class="btn btn-p" onclick="sendSupportMsg()"><i class="ti ti-send-2"></i></button>
+    </div>
+  </div>
+</section>
 <section class="pg" id="pg-settings">
   <div class="topbar"><div><div class="tb-title"><i class="ti ti-settings"></i> تنظیمات</div></div></div>
   <div class="g2">
@@ -1412,7 +1500,7 @@ overlay.addEventListener('click',closeSb);
 function navTo(name){
   document.querySelectorAll('.nav-it').forEach(n=>n.classList.toggle('on',n.dataset.pg===name));
   document.querySelectorAll('.pg').forEach(p=>p.classList.toggle('on',p.id==='pg-'+name));
-const loaders={links:loadLinks,connections:loadConns,errors:loadErrs,subscriptions:loadSubsPage,subgroups:loadSubs,logs:loadActivity,updates:loadVersion};  if(loaders[name])loaders[name]();
+const loaders={links:loadLinks,connections:loadConns,errors:loadErrs,subscriptions:loadSubsPage,subgroups:loadSubs,logs:loadActivity,updates:loadVersion,support:loadSupportMsgs};  if(loaders[name])loaders[name]();
   closeSb();window.scrollTo({top:0,behavior:'smooth'});
 }
 document.querySelectorAll('.nav-it').forEach(el=>el.addEventListener('click',()=>navTo(el.dataset.pg)));
@@ -1944,6 +2032,136 @@ function wsLog(c,m){const l=document.getElementById('ws-log'),p=document.createE
 function wsConn(){const u=document.getElementById('ws-uuid').value.trim();if(!u){toast('UUID را وارد کنید','err');return}const url=(location.protocol==='https:'?'wss':'ws')+'://'+location.host+'/ws/'+u;wsLog('info','اتصال: '+url);ws=new WebSocket(url);ws.onopen=()=>wsLog('ok','✓ متصل - UUID معتبر');ws.onerror=()=>wsLog('err','✗ خطا - UUID نامعتبر یا غیرفعال');ws.onmessage=m=>wsLog('info','دریافت '+(m.data.size||m.data.length)+' byte');ws.onclose=e=>wsLog('err','قطع ('+e.code+')'+(e.code===1008?' - دسترسی رد شد':''))}
 function wsSend(){const m=document.getElementById('ws-msg').value;if(!m||!ws||ws.readyState!==1)return;ws.send(m);wsLog('sent','ارسال: '+m);document.getElementById('ws-msg').value=''}
 function wsDisc(){if(ws)ws.close()}
+const ICON_MAP={ad:'ti-speakerphone',news:'ti-news',warning:'ti-alert-triangle',urgent:'ti-alert-octagon'};
+const LABEL_MAP={ad:'تبلیغ',news:'خبر',warning:'هشدار',urgent:'فوری'};
+async function loadAnnouncements(){
+  try{
+    const r=await authF('/api/announcements'),d=await r.json();
+    const seen=JSON.parse(localStorage.getItem('rvg-seen-ann')||'[]');
+    const list=(d.announcements||[]).filter(a=>!seen.includes(a.id));
+    document.getElementById('ann-banner-wrap').innerHTML=list.map(a=>`
+      <div class="ann-card ${a.type}" id="ann-${a.id}">
+        <button class="ann-close" onclick="dismissAnn('${a.id}')"><i class="ti ti-x"></i></button>
+        <div class="ann-icon"><i class="ti ${ICON_MAP[a.type]||'ti-bell'}"></i></div>
+        <div class="ann-body">
+          <div class="ann-title">${esc(a.title)} <span style="font-size:9px;color:var(--t3)">· ${LABEL_MAP[a.type]||''}</span></div>
+          <div class="ann-text">${esc(a.body)}</div>
+          ${a.image_url?`<img class="ann-img" src="${esc(a.image_url)}">`:''}
+        </div>
+      </div>`).join('');
+      if (list.length) {
+      authF('/api/announcements/view', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: list.map(a => a.id) })
+      }).catch(() => {});
+    }
+  }catch(e){}
+}
+function dismissAnn(id){
+  const seen=JSON.parse(localStorage.getItem('rvg-seen-ann')||'[]');
+  seen.push(id);localStorage.setItem('rvg-seen-ann',JSON.stringify(seen));
+  document.getElementById('ann-'+id)?.remove();
+}
+let lastSupportMsgId = null;
+ 
+function fmtSupTime(ts){
+  const d = new Date(ts);
+  return d.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+}
+function fmtSupDate(ts){
+  const d = new Date(ts);
+  const today = new Date();
+  const isToday = d.toDateString() === today.toDateString();
+  if (isToday) return 'امروز';
+  const y = new Date(today); y.setDate(y.getDate()-1);
+  if (d.toDateString() === y.toDateString()) return 'دیروز';
+  return d.toLocaleDateString('fa-IR');
+}
+ 
+async function loadSupportMsgs() {
+  try {
+    const r = await authF('/api/support/messages'),
+      d = await r.json();
+    const msgs = d.messages || [];
+    const blocked = !!d.blocked;
+    const el = document.getElementById('support-msgs');
+
+    if (el) {
+      if (!msgs.length) {
+        el.innerHTML =
+          '<div class="sup-empty"><i class="ti ti-message-circle-2"></i><b>هنوز گفتگویی نیست</b><span>اولین پیام را شما بفرستید، تیم پشتیبانی به زودی پاسخ می‌دهد</span></div>';
+      } else {
+        let html = '',
+          lastDate = '';
+        msgs.forEach((m, idx) => {
+          const dateLabel = fmtSupDate(m.created_at);
+          if (dateLabel !== lastDate) {
+            html +=
+              '<div class="sup-date-sep"><span>' + dateLabel + '</span></div>';
+            lastDate = dateLabel;
+          }
+          const isLastClientMsg =
+            m.sender === 'client' && idx === msgs.length - 1; // not used, but kept
+          const seenTick =
+            m.sender === 'client'
+              ? m.read_by_admin
+                ? '<i class="ti ti-checks seen"></i>'
+                : '<i class="ti ti-check"></i>'
+              : '';
+          // ✅ Fixed: removed backslashes before backticks
+          html += `
+            <div class="sup-msg-row ${m.sender}">
+              <div class="sup-msg ${m.sender}">
+                ${esc(m.body)}
+                <span class="sup-time">${fmtSupTime(m.created_at)} ${seenTick}</span>
+              </div>
+              <div class="sup-avatar ${m.sender}"><i class="ti ${m.sender === 'admin' ? 'ti-headset' : 'ti-user'}"></i></div>
+            </div>`;
+        });
+        el.innerHTML = html;
+      }
+      const shouldScroll =
+        !lastSupportMsgId ||
+        (msgs.length && msgs[msgs.length - 1].id !== lastSupportMsgId);
+      if (shouldScroll) el.scrollTop = el.scrollHeight;
+      if (msgs.length) lastSupportMsgId = msgs[msgs.length - 1].id;
+    }
+
+    const banner = document.getElementById('sup-blocked-banner');
+    const inputRow = document.getElementById('sup-input-row');
+    if (banner) banner.style.display = blocked ? 'flex' : 'none';
+    if (inputRow) inputRow.classList.toggle('disabled', blocked);
+
+    const nb = document.getElementById('support-nb');
+    if (nb) {
+      const lastAdmin = [...msgs].reverse().find((m) => m.sender === 'admin');
+      const seenId = localStorage.getItem('rvg-last-seen-support-msg');
+      const onSupportPage = document
+        .getElementById('pg-support')
+        .classList.contains('on');
+      const hasNew = lastAdmin && lastAdmin.id !== seenId && !onSupportPage;
+      nb.style.display = hasNew ? 'inline-flex' : 'none';
+      if (lastAdmin && onSupportPage)
+        localStorage.setItem('rvg-last-seen-support-msg', lastAdmin.id);
+    }
+  } catch (e) {
+    // silent fail
+  }
+}
+ 
+async function sendSupportMsg(){
+  const inp=document.getElementById('support-inp');const msg=inp.value.trim();if(!msg)return;
+  inp.disabled = true;
+  try{
+    const r=await authF('/api/support/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+    if(r.status===403){toast('شما توسط پشتیبانی بلاک شده‌اید','err');loadSupportMsgs();inp.disabled=false;return}
+    if(!r.ok)throw new Error();
+    inp.value='';loadSupportMsgs();
+  }catch(e){toast('خطا در ارسال پیام','err')}
+  inp.disabled = false;
+  inp.focus();
+}
 document.addEventListener('DOMContentLoaded',async()=>{
   openModal('modal-copyright-notice');
   await checkAuth();
@@ -1951,15 +2169,19 @@ document.addEventListener('DOMContentLoaded',async()=>{
   document.getElementById('set-host').textContent=location.host;
   document.getElementById('sub-all-url')&&(document.getElementById('sub-all-url').textContent=location.protocol+'//'+location.host+'/sub-all');
   fetchStats();fetchDefaultVless();loadLinks();loadSubs();
-  setInterval(fetchStats,4000);
+  loadAnnouncements();
+  loadSupportMsgs();
+  setInterval(fetchStats,2000);
   setInterval(()=>{
     if(document.getElementById('pg-links').classList.contains('on'))loadLinks();
     if(document.getElementById('pg-subgroups').classList.contains('on'))loadSubs();
     if(document.getElementById('pg-subscriptions').classList.contains('on'))loadSubsPage();
     if(document.getElementById('pg-connections').classList.contains('on'))loadConns();
     if(document.getElementById('pg-logs').classList.contains('on'))loadActivity();
+    if(document.getElementById('pg-support').classList.contains('on'))loadSupportMsgs();
     loadVersion();
   },5000);
+  setInterval(loadAnnouncements,3000);
 });
 
 function timeAgoFa(ts){
@@ -2274,6 +2496,9 @@ html,body{{min-height:100%;background:var(--bg);font-family:var(--serif);color:v
   .lock-form{{padding:20px 22px 26px}}
 }}
 @keyframes spin{{to{{transform:rotate(360deg)}}}}
+
+
+
 </style>
 </head>
 <body>
